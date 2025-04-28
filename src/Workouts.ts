@@ -17,8 +17,10 @@ export class Workouts {
     if (!Number.isInteger(page) || page <= 0) {
       throw new Error("Page must be a positive integer greater than 0");
     }
-    if (!Number.isInteger(pageSize) || pageSize <= 0) {
-      throw new Error("Page size must be a positive integer greater than 0");
+    if (!Number.isInteger(pageSize) || pageSize <= 0 || pageSize > 10) {
+      throw new Error(
+        "Page size must be a positive integer greater than 0 and no more than 10"
+      );
     }
 
     try {

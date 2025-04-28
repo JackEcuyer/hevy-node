@@ -9,6 +9,7 @@ const config: Config = {
   moduleFileExtensions: ["ts", "tsx", "js", "json", "node"], // Add TypeScript extensions
   globals: {},
   testMatch: ["**/__tests__/**/*.test.ts"], // Look for .test.ts files in __tests__ folder
+  setupFiles: ["<rootDir>/jest.setup.ts"],
 };
 
 export default config;
