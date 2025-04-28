@@ -30,10 +30,16 @@ export const APIRequest = async (
 
     // Check if the response is successful (status 2xx)
     if (!response.ok) {
-      // Unsuccessful response, handle error
+      // Unsuccessful response, handle errors
+
+      // 401 Unauthorised, API key invalid
+      if (response.status === 401) {
+        throw new Error(`Invalid API Key`);
+      }
+      // All other errors should be returned in "error" property of JSON response
       const error = await response.json();
       throw new Error(
-        `API Request failed: ${error.message || response.statusText}`
+        `API Request failed: ${error.error || response.statusText}`
       );
     }
 
