@@ -7,11 +7,7 @@ const config: Config = {
     "^.+\\.tsx?$": "ts-jest", // Transform TypeScript files using ts-jest
   },
   moduleFileExtensions: ["ts", "tsx", "js", "json", "node"], // Add TypeScript extensions
-  globals: {
-    "ts-jest": {
-      isolatedModules: true, // Isolate modules for faster compilation
-    },
-  },
+  globals: {},
   testMatch: ["**/__tests__/**/*.test.ts"], // Look for .test.ts files in __tests__ folder
 };
 
