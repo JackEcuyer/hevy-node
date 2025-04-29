@@ -17,4 +17,8 @@ describe("Workouts API Tests", () => {
       "Page size must be a positive integer greater than 0 and no more than 10"
     );
   });
+  it("Should return total number of workouts on account", async () => {
+    const workoutCount = await client.workouts.getWorkoutCount();
+    expect(typeof workoutCount).toBe("number");
+  });
 });

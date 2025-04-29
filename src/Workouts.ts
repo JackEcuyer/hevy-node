@@ -11,7 +11,7 @@ export class Workouts {
     this.hevyClient = client;
   }
 
-  // Method use to retrieve a list of workouts
+  // Method used to retrieve a list of workouts
   public async getWorkouts(page: number, pageSize: number) {
     // Validate that page and pageSize are integers greater than 0
     if (!Number.isInteger(page) || page <= 0) {
@@ -34,6 +34,22 @@ export class Workouts {
       return response; // Return the workout response data
     } catch (error) {
       throw error; // Propagate the error
+    }
+  }
+
+  // Method used to retrieve total number of workouts on the account
+  public async getWorkoutCount() {
+    try {
+      const response = await APIRequest(
+        `https://api.hevy.com/v1/workouts/count`,
+        "GET",
+        null,
+        this.hevyClient.apiKey
+      );
+      // return the number of workouts, in 'workout_count' property
+      return response.workout_count;
+    } catch (error) {
+      throw error;
     }
   }
 }
