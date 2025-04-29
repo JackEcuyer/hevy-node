@@ -1,7 +1,7 @@
 {
-  "name": "hevy-node",
-  "version": "1.0.0",
-  "description": "",
+  "name": "hevy-sdk",
+  "version": "0.0.0",
+  "description": "SDK for interacting with the Hevy API - compatible with Node.js (with TypeScript support) and browser environments.",
   "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.ts",
   "exports": {
@@ -14,7 +14,8 @@
     "build:cjs": "tsc -p tsconfig.commonjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build": "npm run build:cjs && npm run build:esm",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "dotenv": "^16.5.0",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",
