@@ -23,33 +23,45 @@ export class Workouts {
       );
     }
 
-    try {
-      // Use APIRequest helper to send GET request
-      const response = await APIRequest(
-        `https://api.hevy.com/v1/workouts`,
-        "GET",
-        null,
-        this.hevyClient.apiKey
-      );
-      return response; // Return the workout response data
-    } catch (error) {
-      throw error; // Propagate the error
-    }
+    // Use APIRequest helper to send GET request
+    const response = await APIRequest(
+      `https://api.hevy.com/v1/workouts`,
+      "GET",
+      null,
+      this.hevyClient.apiKey
+    );
+    return response; // Return the workout response data
   }
 
   // Method used to retrieve total number of workouts on the account
   public async getWorkoutCount() {
-    try {
-      const response = await APIRequest(
-        `https://api.hevy.com/v1/workouts/count`,
-        "GET",
-        null,
-        this.hevyClient.apiKey
-      );
-      // return the number of workouts, in 'workout_count' property
-      return response.workout_count;
-    } catch (error) {
-      throw error;
+    // Use APIRequest helper to send GET request
+    const response = await APIRequest(
+      `https://api.hevy.com/v1/workouts/count`,
+      "GET",
+      null,
+      this.hevyClient.apiKey
+    );
+    // return the number of workouts, in 'workout_count' property
+    return response.workout_count;
+  }
+
+  // Method used to retrieve a specific workout by workoutID
+  public async getWorkout(workoutID: string) {
+    // Remove whitespace from start & end of ID
+    workoutID = workoutID.trim();
+    // Ensure an ID has been provided
+    if (!workoutID) {
+      throw new Error("Workout ID is required");
     }
+    // Use APIRequest helper to send GET request
+    const response = await APIRequest(
+      `https://api.hevy.com/v1/workouts/${workoutID}`,
+      "GET",
+      null,
+      this.hevyClient.apiKey
+    );
+    // return workout data
+    return response;
   }
 }

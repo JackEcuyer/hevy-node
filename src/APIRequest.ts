@@ -24,29 +24,37 @@ export const APIRequest = async (
     config.body = JSON.stringify(data);
   }
 
-  try {
-    // Send request to Hevy API
-    const response = await fetch(url, config);
+  // Send request to Hevy API
+  const response = await fetch(url, config);
 
-    // Check if the response is successful (status 2xx)
-    if (!response.ok) {
-      // Unsuccessful response, handle errors
+  // Check if the response is successful (status 2xx)
+  if (!response.ok) {
+    // Unsuccessful response, handle errors
 
-      // 401 Unauthorised, API key invalid
-      if (response.status === 401) {
-        throw new Error(`Invalid API Key`);
-      }
-      // All other errors should be returned in "error" property of JSON response
-      const error = await response.json();
-      throw new Error(
-        `API Request failed: ${error.error || response.statusText}`
-      );
+    // Handle invalid API key (401 Unauthorized)
+    if (response.status === 401) {
+      throw new Error(`API Request failed: Invalid API Key`);
     }
 
-    // Return the parsed JSON response
-    const responseData = await response.json();
-    return responseData;
-  } catch (error) {
-    throw error; // Re-throw to be handled by the caller
+    // Initially parse response as text to cater for certain error messages that are not returned in JSON format
+    const responseText = await response.text();
+
+    // Attempt to parse response text as JSON
+    try {
+      const errorJSON = JSON.parse(responseText);
+      // Successfully parsed as JSON, error message will be in the "error" property
+      throw new Error(
+        `API Request failed: ${errorJSON.error || response.statusText}`
+      );
+    } catch {
+      // Failed to parse as JSON, error must be plain response text
+      throw new Error(
+        `API Request failed: ${responseText || response.statusText}`
+      );
+    }
   }
+
+  // Return the parsed JSON response
+  const responseData = await response.json();
+  return responseData;
 };
