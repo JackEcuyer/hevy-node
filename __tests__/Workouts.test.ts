@@ -28,19 +28,19 @@ describe("Workouts API Tests", () => {
     });
   });
   // All tests relating to getWorkout
-  describe("getWorkout", () => {
-    it("Should return 'Workout ID is required' when calling getWorkout without providing a workout ID", async () => {
-      await expect(client.workouts.getWorkout("")).rejects.toThrow(
+  describe("getWorkoutByID", () => {
+    it("Should return 'Workout ID is required' when calling getWorkoutByID without providing a workout ID", async () => {
+      await expect(client.workouts.getWorkoutByID("")).rejects.toThrow(
         "Workout ID is required"
       );
     });
     it("Should return 'API Request failed: Workout not found' when trying to retrieve workout with an invalid ID", async () => {
-      await expect(client.workouts.getWorkout("invalidID")).rejects.toThrow(
+      await expect(client.workouts.getWorkoutByID("invalidID")).rejects.toThrow(
         "API Request failed: Workout not found"
       );
     });
     it("Should return workout data for specified valid workout ID", async () => {
-      const workoutData = await client.workouts.getWorkout(
+      const workoutData = await client.workouts.getWorkoutByID(
         process.env.VALID_WORKOUT_ID || ""
       );
       expect(workoutData).toBeDefined;

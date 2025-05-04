@@ -1,5 +1,5 @@
-import { HevyClient } from "./HevyClient";
-import { APIRequest } from "./APIRequest";
+import { HevyClient } from "../HevyClient";
+import { APIRequest } from "../APIRequest";
 
 // The Workouts class is used to interact with the workouts section of the API.
 export class Workouts {
@@ -47,7 +47,7 @@ export class Workouts {
   }
 
   // Method used to retrieve a specific workout by workoutID
-  public async getWorkout(workoutID: string) {
+  public async getWorkoutByID(workoutID: string) {
     // Remove whitespace from start & end of ID
     workoutID = workoutID.trim();
     // Ensure an ID has been provided
