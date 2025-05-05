@@ -1,4 +1,6 @@
+import { ValidationError } from "../src/errors";
 import { HevyClient } from "../src/HevyClient";
+import { Workout } from "../src/workouts/workout.schema";
 
 const client = new HevyClient(process.env.HEVY_API_KEY || "");
 
@@ -44,6 +46,41 @@ describe("Workouts API Tests", () => {
         process.env.VALID_WORKOUT_ID || ""
       );
       expect(workoutData).toBeDefined;
+    });
+  });
+  // All tests relating to createWorkout
+  describe("createWorkout", () => {
+    it("Should return 'title is required' when calling createWorkout without providing a title for the workout", async () => {
+      const workoutData: any = {
+        start_time: new Date(),
+        end_time: new Date(),
+        is_private: false,
+        exercises: [
+          {
+            exercise_template_id: "D04AC939",
+            sets: [],
+          },
+        ],
+      };
+      await expect(client.workouts.createWorkout(workoutData)).rejects.toThrow(
+        ValidationError
+      );
+    });
+    it("Should create a workout and return newly created workout data", async () => {
+      const workoutData: Workout = {
+        title: "Test SDK Workout",
+        start_time: new Date(),
+        end_time: new Date(),
+        is_private: false,
+        exercises: [
+          {
+            exercise_template_id: "D04AC939",
+            sets: [],
+          },
+        ],
+      };
+      const newWorkout = await client.workouts.createWorkout(workoutData);
+      expect(newWorkout).toBeDefined;
     });
   });
 });

@@ -1,4 +1,4 @@
-import { Workouts } from "./Workouts";
+import { Workouts } from "./workouts";
 
 // The HevyClient class serves as the main entry point for users to interact with the Hevy API.
 export class HevyClient {

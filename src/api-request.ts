@@ -22,6 +22,9 @@ export const APIRequest = async (
   // If there is data (for POST/PUT), add it to the request body
   if (data) {
     config.body = JSON.stringify(data);
+    // Ensure content type header is added when request contains a payload
+    (config.headers as Record<string, string>)["Content-Type"] =
+      "application/json";
   }
 
   // Send request to Hevy API

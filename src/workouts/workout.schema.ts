@@ -20,7 +20,7 @@ const exerciseSchema = z.object({
 });
 
 // Main schema for creating or updating a workout
-const workoutSchema = z.object({
+export const workoutSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
   start_time: z.date(), // Accepts any valid date format
