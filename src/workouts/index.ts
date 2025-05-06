@@ -1,2 +1,2 @@
 export { Workouts } from "./Workouts";
-export { workoutSchema } from "./workout.schema";
+export { Workout } from "./workout.schema";

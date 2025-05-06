@@ -1,9 +1,14 @@
 {
   "name": "hevy-sdk",
   "version": "0.0.0",
-  "description": "SDK for interacting with the Hevy API - compatible with Node.js (with TypeScript support) and browser environments.",
+  "description": "TypeScript SDK for the Hevy API – compatible with Node.js, JavaScript frameworks, and browser environments",
   "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
@@ -17,9 +22,45 @@
     "test": "jest",
     "prepare": "husky"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "hevy",
+    "hevy api",
+    "hevy sdk",
+    "hevy client",
+    "fitness",
+    "fitness api",
+    "workout",
+    "workout tracking",
+    "api",
+    "api client",
+    "sdk",
+    "typescript",
+    "typescript sdk",
+    "typescript api",
+    "typescript client",
+    "node",
+    "nodejs",
+    "browser",
+    "browser sdk",
+    "javascript",
+    "js sdk",
+    "rest api",
+    "http client",
+    "cross-platform",
+    "esm",
+    "cjs",
+    "client library"
+  ],
+  "author": "Jack Ecuyer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JackEcuyer/hevy-sdk.git"
+  },
+  "homepage": "https://github.com/JackEcuyer/hevy-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/JackEcuyer/hevy-sdk/issues"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "dotenv": "^16.5.0",

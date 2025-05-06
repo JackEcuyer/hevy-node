@@ -1,6 +1,6 @@
 import { ValidationError } from "../src/errors";
 import { HevyClient } from "../src/HevyClient";
-import { Workout } from "../src/workouts/workout.schema";
+import { Workout } from "../src/workouts";
 
 const client = new HevyClient(process.env.HEVY_API_KEY || "");
 
