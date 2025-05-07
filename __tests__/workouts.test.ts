@@ -9,7 +9,7 @@ describe("Workouts API Tests", () => {
   describe("getWorkouts", () => {
     it("Should return a list of workouts", async () => {
       const workouts = await client.workouts.getWorkouts(1, 10);
-      expect(workouts).toBeDefined;
+      expect(workouts).toBeDefined();
     });
     it("Should return invalid page number when trying to list workouts with an invalid page number", async () => {
       await expect(client.workouts.getWorkouts(0, 10)).rejects.toThrow(
@@ -45,12 +45,14 @@ describe("Workouts API Tests", () => {
       const workoutData = await client.workouts.getWorkoutByID(
         process.env.VALID_WORKOUT_ID || ""
       );
-      expect(workoutData).toBeDefined;
+      expect(workoutData).toBeDefined();
     });
   });
   // All tests relating to createWorkout
   describe("createWorkout", () => {
     it("Should return 'title is required' when calling createWorkout without providing a title for the workout", async () => {
+      // any only used for testing purposes (need to parse an invalid object and bypass TypeScript checking)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const workoutData: any = {
         start_time: new Date(),
         end_time: new Date(),
@@ -80,7 +82,7 @@ describe("Workouts API Tests", () => {
         ],
       };
       const newWorkout = await client.workouts.createWorkout(workoutData);
-      expect(newWorkout).toBeDefined;
+      expect(newWorkout).toBeDefined();
     });
   });
 });

@@ -7,7 +7,7 @@
 export const APIRequest = async (
   url: string,
   method: string = "GET",
-  data: Record<string, any> | null = null,
+  data: Record<string, unknown> | null = null,
   apiKey: string
 ) => {
   // Setup request configuration
