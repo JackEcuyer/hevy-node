@@ -8,7 +8,7 @@ export const APIRequest = async (
   url: string,
   method: string = "GET",
   data: Record<string, unknown> | null = null,
-  apiKey: string
+  apiKey: string,
 ) => {
   // Setup request configuration
   const config: RequestInit = {
@@ -47,12 +47,12 @@ export const APIRequest = async (
       const errorJSON = JSON.parse(responseText);
       // Successfully parsed as JSON, error message will be in the "error" property
       throw new Error(
-        `API Request failed: ${errorJSON.error || response.statusText}`
+        `API Request failed: ${errorJSON.error || response.statusText}`,
       );
     } catch {
       // Failed to parse as JSON, error must be plain response text
       throw new Error(
-        `API Request failed: ${responseText || response.statusText}`
+        `API Request failed: ${responseText || response.statusText}`,
       );
     }
   }

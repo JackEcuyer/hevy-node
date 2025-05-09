@@ -21,7 +21,7 @@ export class Workouts {
     }
     if (!Number.isInteger(pageSize) || pageSize <= 0 || pageSize > 10) {
       throw new Error(
-        "Page size must be a positive integer greater than 0 and no more than 10"
+        "Page size must be a positive integer greater than 0 and no more than 10",
       );
     }
 
@@ -30,7 +30,7 @@ export class Workouts {
       `https://api.hevy.com/v1/workouts`,
       "GET",
       null,
-      this.hevyClient.apiKey
+      this.hevyClient.apiKey,
     );
     return response; // Return the workout response data
   }
@@ -42,7 +42,7 @@ export class Workouts {
       `https://api.hevy.com/v1/workouts/count`,
       "GET",
       null,
-      this.hevyClient.apiKey
+      this.hevyClient.apiKey,
     );
     // return the number of workouts, in 'workout_count' property
     return response.workout_count;
@@ -61,7 +61,7 @@ export class Workouts {
       `https://api.hevy.com/v1/workouts/${workoutID}`,
       "GET",
       null,
-      this.hevyClient.apiKey
+      this.hevyClient.apiKey,
     );
     // return workout data
     return response;
@@ -85,7 +85,7 @@ export class Workouts {
       "POST",
       // Workout data is wrapped in a 'workout' object
       { workout: validatedWorkout },
-      this.hevyClient.apiKey
+      this.hevyClient.apiKey,
     );
     // return newly created workout data
     return response;

@@ -13,12 +13,12 @@ describe("Workouts API Tests", () => {
     });
     it("Should return invalid page number when trying to list workouts with an invalid page number", async () => {
       await expect(client.workouts.getWorkouts(0, 10)).rejects.toThrow(
-        "Page must be a positive integer greater than 0"
+        "Page must be a positive integer greater than 0",
       );
     });
     it("Should return invalid page size when trying to list workouts with an invalid page size", async () => {
       await expect(client.workouts.getWorkouts(1, 11)).rejects.toThrow(
-        "Page size must be a positive integer greater than 0 and no more than 10"
+        "Page size must be a positive integer greater than 0 and no more than 10",
       );
     });
   });
@@ -33,17 +33,17 @@ describe("Workouts API Tests", () => {
   describe("getWorkoutByID", () => {
     it("Should return 'Workout ID is required' when calling getWorkoutByID without providing a workout ID", async () => {
       await expect(client.workouts.getWorkoutByID("")).rejects.toThrow(
-        "Workout ID is required"
+        "Workout ID is required",
       );
     });
     it("Should return 'API Request failed: Workout not found' when trying to retrieve workout with an invalid ID", async () => {
       await expect(client.workouts.getWorkoutByID("invalidID")).rejects.toThrow(
-        "API Request failed: Workout not found"
+        "API Request failed: Workout not found",
       );
     });
     it("Should return workout data for specified valid workout ID", async () => {
       const workoutData = await client.workouts.getWorkoutByID(
-        process.env.VALID_WORKOUT_ID || ""
+        process.env.VALID_WORKOUT_ID || "",
       );
       expect(workoutData).toBeDefined();
     });
@@ -65,7 +65,7 @@ describe("Workouts API Tests", () => {
         ],
       };
       await expect(client.workouts.createWorkout(workoutData)).rejects.toThrow(
-        ValidationError
+        ValidationError,
       );
     });
     it("Should create a workout and return newly created workout data", async () => {
