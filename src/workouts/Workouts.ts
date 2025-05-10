@@ -3,7 +3,10 @@ import { APIRequest } from "../api-request";
 import { ValidationError } from "../errors";
 import { workoutSchema, Workout } from "./workout.schema";
 
-// The Workouts class is used to interact with the workouts section of the API.
+/**
+ * The Workouts class is used to interact with the workouts section of the Hevy API.
+ * It provides methods for retrieving, creating, and managing workouts on the account.
+ */
 export class Workouts {
   // Store the instance of HevyClient to use for making API requests.
   private hevyClient: HevyClient;
@@ -13,7 +16,20 @@ export class Workouts {
     this.hevyClient = client;
   }
 
-  // Method used to retrieve a list of workouts
+  /**
+   * Retrieves a list of workouts from the API.
+   * @param page - The page number for pagination. Must be a positive integer.
+   * @param pageSize - The number of workouts per page. Must be a positive integer and no greater than 10.
+   * @returns A list of workouts.
+   * @throws Error if the page or pageSize is invalid.
+   * @example
+   * ```ts
+   * import { HevyClient } from 'hevy-sdk';
+   *
+   * const client = new HevyClient('your-api-key');
+   * const workouts = await client.workouts.getWorkouts(1, 10);
+   * ```
+   */
   public async getWorkouts(page: number, pageSize: number) {
     // Validate that page and pageSize are integers greater than 0
     if (!Number.isInteger(page) || page <= 0) {
@@ -35,7 +51,18 @@ export class Workouts {
     return response; // Return the workout response data
   }
 
-  // Method used to retrieve total number of workouts on the account
+  /**
+   * Retrieves the total number of workouts on the account.
+   * @returns The total workout count.
+   * @throws Error if the API request fails.
+   * @example
+   * ```ts
+   * import { HevyClient } from 'hevy-sdk';
+   *
+   * const client = new HevyClient('your-api-key');
+   * const count = await client.workouts.getWorkoutCount();
+   * ```
+   */
   public async getWorkoutCount() {
     // Use APIRequest helper to send GET request
     const response = await APIRequest(
@@ -48,7 +75,19 @@ export class Workouts {
     return response.workout_count;
   }
 
-  // Method used to retrieve a specific workout by workoutID
+  /**
+   * Retrieves a specific workout by workoutID.
+   * @param workoutID - The unique ID of the workout to retrieve.
+   * @returns The workout data for the specified workout ID.
+   * @throws Error if the workoutID is invalid or missing.
+   * @example
+   * ```ts
+   * import { HevyClient } from 'hevy-sdk';
+   *
+   * const client = new HevyClient('your-api-key');
+   * const workout = await client.workouts.getWorkoutByID("workout-id");
+   * ```
+   */
   public async getWorkoutByID(workoutID: string) {
     // Remove whitespace from start & end of ID
     workoutID = workoutID.trim();
@@ -67,7 +106,19 @@ export class Workouts {
     return response;
   }
 
-  // Method used to create a workout
+  /**
+   * Creates a new workout.
+   * @param workout - The workout object to create.
+   * @returns The newly created workout data.
+   * @throws ValidationError if the provided workout data is invalid.
+   * @example
+   * ```ts
+   * import { HevyClient } from 'hevy-sdk';
+   *
+   * const client = new HevyClient('your-api-key');
+   * const newWorkout = await workouts.createWorkout(validWorkoutObject);
+   * ```
+   */
   public async createWorkout(workout: Workout) {
     // Validate workout data
     const validationResult = workoutSchema.safeParse(workout);

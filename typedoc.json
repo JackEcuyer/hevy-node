@@ -1,0 +1,8 @@
+{
+  "name": "Hevy SDK Documentation",
+  "includeVersion": true,
+  "tsconfig": "tsconfig.commonjs.json",
+  "entryPoints": ["src/index.ts"],
+  "disableSources": true,
+  "excludeNotDocumented": true
+}
